@@ -1,0 +1,42 @@
+{
+  "name": "api-node-mysql",
+  "version": "1.0.0",
+  "description": "api restful node mysql",
+  "main": "app.js",
+  "scripts": {
+    "start": "babel-node src/bin/www",
+    "prod": "NODE_ENV=production node src/bin/www",
+    "dev": "nodemon --exec babel-node ./src/bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pulidovpe/api-node-mysql.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pulidovpe/api-node-mysql/issues"
+  },
+  "homepage": "https://github.com/pulidovpe/api-node-mysql#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "http-errors": "^1.7.3",
+    "morgan": "^1.9.1",
+    "mysql": "^2.17.1",
+    "mysql2": "^1.6.5",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "sequelize": "^5.12.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "nodemon": "^1.19.1"
+  }
+}
