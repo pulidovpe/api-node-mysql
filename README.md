@@ -1,9 +1,24 @@
 # api-node-mysql
 ## API Rest - Node MySQL Sequelize
-Project under development.
-> Application developed in Node and Express; which uses a database in MySQL (API Rest).
+Project under development / Proyecto en desarrollo
+> Application developed in Node, Express, and Sequelize; which uses a database in MySQL (API Rest).
 At the moment you can only create users and log in with the created user.\
 > Because JWT is used for session control, you must add a JWT token correctly formatted in the headers. Generate the token with the path / loginUser, copy the value of the token property and paste it in the entry with JWT <token string>. The (key) field must have the name "Authorization".
+
+## Tech-framework used / Tecnologías Usadas
+
+- Node
+- @babel
+- express
+- nodemon
+- dotenv
+- cors
+- bcryptjs
+- http-errors
+- morgan
+- mysql
+- passport
+- sequelize
 
 ### Default Routes
 
@@ -26,3 +41,18 @@ At the moment you can only create users and log in with the created user.\
 - [ ] Complete the front-end (and mobile app).
 
 > The API (currently under development) can be accessed from this link: [heroku]()
+
+## Contribute / Para contribuir
+1. Has un [Fork](https://github.com/pulidovpe/api-node-mysql/fork)
+2. Crea tu propia rama (git checkout -b feature/fooBar)
+3. Sube tus cambios (git commit -am 'Add some fooBar')
+4. Actualiza tu rama (git push origin feature/fooBar)
+5. Has un "Pull Request"
+
+## Credits / Créditos
+En este proyecto, me he guiado del tutorial publicado en un post publicado por esta persona:
+[Paige Niedringhaus](https://itnext.io/implementing-json-web-tokens-passport-js-in-a-javascript-application-with-react-b86b1f313436), propiedad del usuario @github/paigen11
+
+## License / Licencia
+Pulido V.P.E. – @github/pulidovpe – pulidovpe.dev@gmail.com
+Distributed under the MIT license. See [LICENSE](LICENSE) for more information.
