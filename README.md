@@ -7,20 +7,17 @@ At the moment you can only create users and log in with the created user.\
 
 ## Tech-framework used / Tecnologías Usadas
 
-- Node
-- @babel
-- express
-- nodemon
-- dotenv
-- cors
-- bcryptjs
-- http-errors
-- morgan
-- mysql
-- passport
-- sequelize
+- Node ^10.16.3
+- @babel ^7.5.5
+- dotenv ^8.0.0
+- bcryptjs ^2.4.3
+- mysql ^2.17.1
+- mysql2 ^1.6.5
+- passport ^0.4.0
+- passport-jwt ^4.0.0
+- sequelize ^5.12.3
 
-### Default Routes
+### Default Routes / Rutas
 
 | Endpoint | Method | Description | Required | Response |
 | - | - | - | - | - |
@@ -50,8 +47,8 @@ At the moment you can only create users and log in with the created user.\
 5. Has un "Pull Request"
 
 ## Credits / Créditos
-En este proyecto, me he guiado del tutorial publicado en un post publicado por esta persona:
-[Paige Niedringhaus](https://itnext.io/implementing-json-web-tokens-passport-js-in-a-javascript-application-with-react-b86b1f313436), propiedad del usuario @github/paigen11
+En este proyecto, me he guiado del tutorial publicado en el blog:
+[itnext](https://itnext.io/implementing-json-web-tokens-passport-js-in-a-javascript-application-with-react-b86b1f313436), propiedad de @github/paigen11
 
 ## License / Licencia
 Pulido V.P.E. – @github/pulidovpe – pulidovpe.dev@gmail.com
