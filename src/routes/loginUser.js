@@ -39,15 +39,18 @@ module.exports = app => {
                   where: {
                      email: req.body.email,
                   },
-               }).then(user => {
-                  const data = {
-                     name: user.name,
-                     email: user.email
-                  };
-                  const token = jwt.sign({ id: user.id }, secret, {
-                     expiresIn: 60 * 60,
+               }).then(user => {                  
+                  const expiresIn = 24 * 60 * 60;
+                  const accessToken = jwt.sign({ id: user.id }, secret, {
+                     expiresIn: expiresIn
                   });
-                  res.status(200).json({ auth: true, data, token, message: 'User found & logged in' });
+                  const dataUser = {
+                     name: user.name,
+                     email: user.email,
+                     accessToken: accessToken,
+                     expiresIn: expiresIn
+                  };
+                  res.status(200).json({ auth: true, dataUser, message: 'User found & logged in' });
                });
             });
          }

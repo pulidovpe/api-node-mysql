@@ -22,11 +22,11 @@ At the moment you can only create users and log in with the created user.\
 | Endpoint | Method | Description | Required | Response |
 | - | - | - | - | - |
 | `/` | `GET` | The main route. | |
-| `/registerUser` | `POST` | Create new user. | fullname, email, password | JSON <br> { data, message } |
-| `/loginUser` | `POST` | Authenticate user. | email, password | JSON <br> { auth, data, JWT token, message } |
-| `/updateUser` | `PUT` | Update user. | JWT token, email, fullname | JSON <br> { data, auth, message } |
-| `/updatePassword` | `PUT` | Update password. | JWT token, email, newPassword | JSON <br> { auth, message } |
-| `/deleteUser` | `DELETE` | Delete user. | JWT token, email | JSON <br> { message } |
+| `/registerUser` | `POST` | Create new user. | fullname, email, password | JSON <br> { dataUser, message } |
+| `/loginUser` | `POST` | Authenticate user. | email, password | JSON <br> { auth, dataUser, message } |
+| `/updateUser` | `PUT` | Update user. | accessToken, email, fullname | JSON <br> { dataUser, auth, message } |
+| `/updatePassword` | `PUT` | Update password. | accessToken, email, newPassword | JSON <br> { auth, message } |
+| `/deleteUser` | `DELETE` | Delete user. | accessToken, email | JSON <br> { message } |
 
 
 ## Tasks / Lista de Tareas

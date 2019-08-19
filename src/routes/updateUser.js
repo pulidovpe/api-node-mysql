@@ -14,7 +14,7 @@ module.exports = app => {
          if (!req.body.fullname) {
             return res.status(422).json({ message: 'Fullname is required' });
          }
-         const data = {
+         const dataUser = {
             name: req.body.fullname,
             email: req.body.email
          };
@@ -36,8 +36,8 @@ module.exports = app => {
                      })
                      .then(() => {
                         console.log('user updated');
-                        data.updatedAt = user.updatedAt;
-                        res.status(200).json({ data, auth: true, message: 'User updated' });
+                        dataUser.updatedAt = user.updatedAt;
+                        res.status(200).json({ dataUser, auth: true, message: 'User updated' });
                      });
                } else {
                   console.error('user does not exists');

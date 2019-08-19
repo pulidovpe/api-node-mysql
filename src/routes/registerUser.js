@@ -19,24 +19,24 @@ module.exports = app => {
             res.status(409).json(info);
          } else {
             req.logIn(user, error => {
-               const data = {
+               const dataUser = {
                   name: req.body.fullname,
                   email: req.body.email
                };
                User.findOne({
                   where: {
-                     email: data.email,
+                     email: dataUser.email,
                   },
                }).then(user => {
                   user
                      .update({
-                        name: data.name,
-                        email: data.email
+                        name: dataUser.name,
+                        email: dataUser.email
                      })
                      .then(() => {
                         console.log('user created in db');
-                        data.createdAt = user.createdAt;
-                        res.status(201).json({ data, message: 'User created' });
+                        dataUser.createdAt = user.createdAt;
+                        res.status(201).json({ dataUser, message: 'User created' });
                      });
                });
             });
