@@ -32,10 +32,10 @@ At the moment you can only create users and log in with the created user.\
 ## Tasks / Lista de Tareas
 - [x] Repository initialization.
 - [x] First changes to GitHub and Gitlab.
-- [x] API tests.
-- [ ] Application deployment in heroku.
+- [x] Add features and routes.
+- [x] Unit tests.
 - [ ] Improve and complete the API.
-- [ ] Complete the front-end (and mobile app).
+- [ ] Application deployment in heroku.
 
 > The API (currently under development) can be accessed from this link: [heroku]()
 
