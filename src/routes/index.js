@@ -3,9 +3,8 @@ import express from 'express';
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-   res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-   res.end('Express RESTful API');
-   // res.render('index.hbs')
+   res.setHeader('Content-Type', 'application/json; charset=utf-8');
+   res.json({response: 'Express RESTful API'});
 });
 
 module.exports = router;

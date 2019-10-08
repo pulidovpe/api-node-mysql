@@ -4,9 +4,14 @@
   "description": "api restful node mysql",
   "main": "app.js",
   "scripts": {
-    "start": "babel-node src/bin/www",
-    "prod": "NODE_ENV=production node src/bin/www",
-    "dev": "nodemon --exec babel-node ./src/bin/www"
+    "start": "npm run prod",
+    "server": "babel-node ./src/bin/www.js",
+    "server:prod": "node ./bundle/bin/www.js",
+    "dev": "NODE_ENV=development nodemon --exec npm-run-all server",
+    "build": "babel ./src --out-dir bundle",
+    "prod": "NODE_ENV=production npm-run-all clean build server:prod",
+    "clean": "rimraf bundle",
+    "test": "mocha --exit"
   },
   "repository": {
     "type": "git",
@@ -21,6 +26,7 @@
   "homepage": "https://github.com/pulidovpe/api-node-mysql#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "core-js": "^3.2.1",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
@@ -28,15 +34,22 @@
     "morgan": "^1.9.1",
     "mysql": "^2.17.1",
     "mysql2": "^1.6.5",
+    "npm-run-all": "^4.1.5",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
+    "rimraf": "^3.0.0",
     "sequelize": "^5.12.3"
   },
   "devDependencies": {
+    "@babel/cli": "^7.6.0",
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
+    "@babel/polyfill": "^7.6.0",
     "@babel/preset-env": "^7.5.5",
-    "nodemon": "^1.19.1"
+    "mocha": "^6.2.1",
+    "nodemon": "^1.19.1",
+    "should": "^13.2.3",
+    "supertest": "^4.0.2"
   }
 }

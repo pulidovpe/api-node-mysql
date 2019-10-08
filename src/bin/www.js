@@ -3,6 +3,8 @@
 /**
  * Module dependencies.
  */
+require("@babel/polyfill");
+
 const app = require('../app');
 const debug = require('debug')('api-node-mysql:server');
 const http = require('http');
