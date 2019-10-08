@@ -47,6 +47,7 @@
     "@babel/node": "^7.5.5",
     "@babel/polyfill": "^7.6.0",
     "@babel/preset-env": "^7.5.5",
+    "fakerator": "^0.3.0",
     "mocha": "^6.2.1",
     "nodemon": "^1.19.1",
     "should": "^13.2.3",
