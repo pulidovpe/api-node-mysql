@@ -1,5 +1,5 @@
-# api-node-mysql
-## API Rest - Node MySQL Sequelize
+# API Node Mysql
+## API Rest - Node, MySQL, and Sequelize
 Project under development / Proyecto en desarrollo
 > Application developed in Node, Express, and Sequelize; which uses a database in MySQL (API Rest).
 At the moment you can only create users and log in with the created user.\
@@ -16,6 +16,8 @@ At the moment you can only create users and log in with the created user.\
 - passport ^0.4.0
 - passport-jwt ^4.0.0
 - sequelize ^5.12.3
+- mocha: ^6.2.1,
+- supertest: ^4.0.2
 
 ### Default Routes / Rutas
 
@@ -28,6 +30,28 @@ At the moment you can only create users and log in with the created user.\
 | `/updatePassword` | `PUT` | Update password. | accessToken, email, newPassword | JSON <br> { auth, message } |
 | `/deleteUser` | `DELETE` | Delete user. | accessToken, email | JSON <br> { message } |
 
+## Install / Instalación
+#### OS X, Linux & Windows
+*To install first, open a shell and run:*
+```Shell
+$ git clone http://github.com/pulidovpe/api-node-mysql.git
+
+$ cd api-node-mysql
+
+$ npm install
+```
+*Then, rename the file EXAMPLE.env  to  .env and after update it with your credentials.*
+<br />
+*Finally, run:*
+```Shell
+$ npm start
+```
+*To run unit testing:*
+```Shell
+$ npm run build
+
+$ npm run test
+```
 
 ## Tasks / Lista de Tareas
 - [x] Repository initialization.
@@ -48,8 +72,8 @@ At the moment you can only create users and log in with the created user.\
 
 ## Credits / Créditos
 En este proyecto, me he guiado del tutorial publicado en el blog:
-[itnext](https://itnext.io/implementing-json-web-tokens-passport-js-in-a-javascript-application-with-react-b86b1f313436), propiedad de @github/paigen11
+[itnext](https://itnext.io/implementing-json-web-tokens-passport-js-in-a-javascript-application-with-react-b86b1f313436), propiedad de [@github/paigen11](https://github.com/paigen11)
 
 ## License / Licencia
-Pulido V.P.E. – @github/pulidovpe – pulidovpe.dev@gmail.com
+[@github/pulidovpe](https://github.com/pulidovpe) – pulidovpe.dev@gmail.com
 Distributed under the MIT license. See [LICENSE](LICENSE) for more information.
