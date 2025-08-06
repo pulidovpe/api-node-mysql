@@ -1,53 +1,51 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 var _passport = _interopRequireDefault(require("passport"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
+var _sequelize = _interopRequireDefault(require("../middlewares/sequelize.js"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 // registerUser.js
-var User = require('../middlewares/sequelize');
-
-module.exports = function (app) {
-  app.post('/registerUser', function (req, res, next) {
-    _passport["default"].authenticate('register', function (err, user, info) {
+var _default = app => {
+  app.post('/registerUser', (req, res, next) => {
+    _passport.default.authenticate('register', (err, user, info) => {
       if (err) {
         console.error(err);
       }
-
       if (!req.body.email) {
         return res.status(422).json({
           message: 'Email is required'
         });
       }
-
       if (!req.body.password) {
         return res.status(422).json({
           message: 'Password is required'
         });
       }
-
       if (info !== undefined) {
         console.error(info.message);
         res.status(409).json(info);
       } else {
-        req.logIn(user, function (error) {
-          var dataUser = {
+        req.logIn(user, error => {
+          const dataUser = {
             name: req.body.fullname,
             email: req.body.email
           };
-          User.findOne({
+          _sequelize.default.findOne({
             where: {
               email: dataUser.email
             }
-          }).then(function (user) {
+          }).then(user => {
             user.update({
               name: dataUser.name,
               email: dataUser.email
-            }).then(function () {
+            }).then(() => {
               console.log('user created in db');
               dataUser.createdAt = user.createdAt;
               res.status(201).json({
-                dataUser: dataUser,
+                dataUser,
                 message: 'User created'
               });
             });
@@ -67,3 +65,4 @@ router.get('/', async (req, res) => {
 });
 
 module.exports = router; */
+exports.default = _default;

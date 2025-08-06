@@ -1,15 +1,19 @@
 "use strict";
 
 var _bcryptjs = _interopRequireDefault(require("bcryptjs"));
-
-var _sequelize = _interopRequireDefault(require("sequelize"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-var _require = require('../config/config'),
-    secret = _require.app.secret;
-
-var BCRYPT_SALT_ROUNDS = 12;
+var _sequelize = require("sequelize");
+var _config = _interopRequireDefault(require("../config/config.js"));
+var _passport = _interopRequireDefault(require("passport"));
+var _passportLocal = _interopRequireDefault(require("passport-local"));
+var _passportJwt = _interopRequireDefault(require("passport-jwt"));
+var _sequelize2 = _interopRequireDefault(require("./sequelize.js"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+const {
+  app: {
+    secret
+  }
+} = _config.default;
+const BCRYPT_SALT_ROUNDS = 12;
 /*
    response code
    -------------
@@ -21,25 +25,15 @@ var BCRYPT_SALT_ROUNDS = 12;
 */
 // const Op = Sequelize.Op;
 
-var passport = require('passport');
-
-var LocalStrategy = require('passport-local').Strategy;
-
-var JWTstrategy = require('passport-jwt').Strategy;
-
-var ExtractJWT = require('passport-jwt').ExtractJwt;
-
-var User = require('./sequelize');
-
-passport.use('register', new LocalStrategy({
+const ExtractJWT = _passportJwt.default.ExtractJwt;
+_passport.default.use('register', new _passportLocal.default.Strategy({
   usernameField: 'email',
   passwordField: 'password',
   passReqToCallback: true,
   session: false
-}, function (req, email, password, done) {
+}, (req, email, password, done) => {
   console.log(email);
   console.log(req.body.fullname);
-
   try {
     if (!req.body.fullname) {
       return done(null, false, {
@@ -47,12 +41,11 @@ passport.use('register', new LocalStrategy({
         message: 'Fullname is required'
       });
     }
-
-    User.findOne({
+    _sequelize2.default.findOne({
       where: {
-        email: email
+        email
       }
-    }).then(function (user) {
+    }).then(user => {
       if (user != null) {
         console.log('Username or Email already taken');
         return done(null, false, {
@@ -60,13 +53,12 @@ passport.use('register', new LocalStrategy({
           message: "Username or Email already taken"
         });
       }
-
-      _bcryptjs["default"].hash(password, BCRYPT_SALT_ROUNDS).then(function (hashedPassword) {
-        User.create({
+      _bcryptjs.default.hash(password, BCRYPT_SALT_ROUNDS).then(hashedPassword => {
+        _sequelize2.default.create({
           password: hashedPassword,
           name: req.body.fullname,
-          email: email
-        }).then(function (user) {
+          email
+        }).then(user => {
           console.log('user created');
           return done(null, user);
         });
@@ -76,25 +68,24 @@ passport.use('register', new LocalStrategy({
     return done(err);
   }
 }));
-passport.use('login', new LocalStrategy({
+_passport.default.use('login', new _passportLocal.default.Strategy({
   usernameField: 'email',
   passwordField: 'password',
   session: false
-}, function (email, password, done) {
+}, (email, password, done) => {
   try {
-    User.findOne({
+    _sequelize2.default.findOne({
       where: {
-        email: email
+        email
       }
-    }).then(function (user) {
+    }).then(user => {
       if (user === null) {
         return done(null, false, {
           code: 2,
           message: "User does not exists"
         });
       }
-
-      _bcryptjs["default"].compare(password, user.password).then(function (response) {
+      _bcryptjs.default.compare(password, user.password).then(response => {
         if (response !== true) {
           console.log('passwords do not match');
           return done(null, false, {
@@ -102,7 +93,6 @@ passport.use('login', new LocalStrategy({
             message: 'Passwords do not match'
           });
         }
-
         console.log('User found & authenticated');
         return done(null, user);
       });
@@ -111,17 +101,17 @@ passport.use('login', new LocalStrategy({
     done(err);
   }
 }));
-var opts = {
+const opts = {
   jwtFromRequest: ExtractJWT.fromAuthHeaderWithScheme('JWT'),
   secretOrKey: secret
 };
-passport.use('jwt', new JWTstrategy(opts, function (jwt_payload, done) {
+_passport.default.use('jwt', new _passportJwt.default.Strategy(opts, (jwt_payload, done) => {
   try {
-    User.findOne({
+    _sequelize2.default.findOne({
       where: {
         id: jwt_payload.id
       }
-    }).then(function (user) {
+    }).then(user => {
       if (user) {
         console.log('User found in db in passport');
         done(null, user);

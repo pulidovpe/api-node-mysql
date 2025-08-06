@@ -1,57 +1,54 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 var _passport = _interopRequireDefault(require("passport"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
+var _sequelize = _interopRequireDefault(require("../middlewares/sequelize.js"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 // updateUser.js
-var User = require('../middlewares/sequelize');
-
-module.exports = function (app) {
-  app.put('/updateUser', function (req, res, next) {
-    _passport["default"].authenticate('jwt', {
+var _default = app => {
+  app.put('/updateUser', (req, res, next) => {
+    _passport.default.authenticate('jwt', {
       session: false
-    }, function (err, user, info) {
+    }, (err, user, info) => {
       if (err) {
         console.error(err);
       }
-
       if (!req.body.email) {
         return res.status(422).json({
           message: 'Email is required'
         });
       }
-
       if (!req.body.fullname) {
         return res.status(422).json({
           message: 'Fullname is required'
         });
       }
-
-      var dataUser = {
+      const dataUser = {
         name: req.body.fullname,
         email: req.body.email
       };
-
       if (info !== undefined) {
         console.error(info.message);
         res.status(403).json(info);
       } else {
-        User.findOne({
+        _sequelize.default.findOne({
           where: {
             email: req.body.email
           }
-        }).then(function (userInfo) {
+        }).then(userInfo => {
           if (userInfo != null) {
             console.log('user found in db');
             userInfo.update({
               name: req.body.fullname,
               email: req.body.email
-            }).then(function () {
+            }).then(() => {
               console.log('user updated');
               dataUser.updatedAt = user.updatedAt;
               res.status(200).json({
-                dataUser: dataUser,
+                dataUser,
                 auth: true,
                 message: 'User updated'
               });
@@ -67,3 +64,4 @@ module.exports = function (app) {
     })(req, res, next);
   });
 };
+exports.default = _default;

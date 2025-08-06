@@ -1,54 +1,50 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 var _passport = _interopRequireDefault(require("passport"));
-
 var _bcryptjs = _interopRequireDefault(require("bcryptjs"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
+var _sequelize = _interopRequireDefault(require("../middlewares/sequelize.js"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 // updatePassword.js
-var User = require('../middlewares/sequelize');
 
-var BCRYPT_SALT_ROUNDS = 12;
-
-module.exports = function (app) {
-  app.put('/updatePassword', function (req, res, next) {
-    _passport["default"].authenticate('jwt', {
+const BCRYPT_SALT_ROUNDS = 12;
+var _default = app => {
+  app.put('/updatePassword', (req, res, next) => {
+    _passport.default.authenticate('jwt', {
       session: false
-    }, function (err, user, info) {
+    }, (err, user, info) => {
       if (err) {
         console.error(err);
       }
-
       if (!req.body.email) {
         return res.status(422).json({
           message: 'Email is required'
         });
       }
-
       if (!req.body.newPassword) {
         return res.status(422).json({
           message: 'New password is required'
         });
       }
-
       if (info !== undefined) {
         console.error(info.message);
         res.status(403).json(info);
       } else {
-        User.findOne({
+        _sequelize.default.findOne({
           where: {
             email: req.body.email
           }
-        }).then(function (userInfo) {
+        }).then(userInfo => {
           if (userInfo != null) {
             console.log('user found in db');
-
-            _bcryptjs["default"].hash(req.body.newPassword, BCRYPT_SALT_ROUNDS).then(function (hashedPassword) {
+            _bcryptjs.default.hash(req.body.newPassword, BCRYPT_SALT_ROUNDS).then(hashedPassword => {
               userInfo.update({
                 password: hashedPassword
               });
-            }).then(function () {
+            }).then(() => {
               console.log('password updated');
               res.status(200).json({
                 auth: true,
@@ -66,3 +62,4 @@ module.exports = function (app) {
     })(req, res, next);
   });
 };
+exports.default = _default;

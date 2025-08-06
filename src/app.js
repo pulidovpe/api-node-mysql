@@ -11,6 +11,7 @@ import logoutUser from './routes/logoutUser.js';
 import updateUser from './routes/updateUser.js';
 import updatePassword from './routes/updatePassword.js';
 import deleteUser from './routes/deleteUser.js';
+import getAllUsers from './routes/getAllUsers.js';
 
 // Import passport middleware
 import './middlewares/passport.js';
@@ -32,6 +33,7 @@ logoutUser(app);
 updateUser(app);
 updatePassword(app);
 deleteUser(app);
+getAllUsers(app);
 
 // error handler 404
 app.use(function (req, res, next) {

@@ -1,31 +1,41 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _sequelize = require("sequelize");
 // user.js
-module.exports = function (sequelize, type) {
-  return sequelize.define('user', {
+var _default = sequelize => {
+  const User = sequelize.define('user', {
     // attributes
     id: {
-      type: type.INTEGER,
+      type: _sequelize.DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
     name: {
-      type: type.STRING(255),
+      type: _sequelize.DataTypes.STRING(255),
       allowNull: false
     },
     email: {
-      type: type.STRING(255),
+      type: _sequelize.DataTypes.STRING(255),
       allowNull: false
     },
     password: {
-      type: type.STRING(255),
+      type: _sequelize.DataTypes.STRING(255),
       allowNull: false
     },
     remember_token: {
-      type: type.STRING(100) // allowNull defaults to true
-
+      type: _sequelize.DataTypes.STRING(100)
+      // allowNull defaults to true
     },
-    resetPasswordToken: type.STRING,
-    resetPasswordExpires: type.DATE
+    resetPasswordToken: _sequelize.DataTypes.STRING,
+    resetPasswordExpires: _sequelize.DataTypes.DATE
+  }, {
+    tableName: 'users',
+    timestamps: true
   });
+  return User;
 };
+exports.default = _default;
