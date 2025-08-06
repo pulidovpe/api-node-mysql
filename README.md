@@ -67,6 +67,7 @@ At the moment you can only create users and log in with the created user.\
 | `/updateUser` | `PUT` | Update user. | accessToken, email, fullname | JSON <br> { dataUser, auth, message } |
 | `/updatePassword` | `PUT` | Update password. | accessToken, email, newPassword | JSON <br> { auth, message } |
 | `/deleteUser` | `DELETE` | Delete user. | accessToken, email | JSON <br> { message } |
+| `/getUsers` | `GET` | Get all users. | | `{"success": true,"message": "Users retrieved successfully","data": [],"count": 0}` |
 
 ## 🛠️ Install / Instalación
 #### OS X, Linux & Windows
@@ -118,10 +119,10 @@ DB_PASSWORD=password
 - [x] **Security updates and dependency modernization** ✅
 - [x] **Migration to ES6 Modules** ✅
 - [x] **Sequelize v6 upgrade** ✅
-- [ ] Improve and complete the API.
-- [ ] Application deployment in heroku.
+- [x] New route (getUsers) ✅
+- [ ] Application deployment in ...
 
-> The API (currently under development) can be accessed from this link: [heroku]()
+> The API (currently under development) can be accessed from this link: [...]()
 
 ## 🔍 Testing / Pruebas
 
