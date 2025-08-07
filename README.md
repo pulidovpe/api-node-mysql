@@ -93,7 +93,7 @@ $ npm run dev
 ```Shell
 $ npm run build
 
-$ npm run test
+$ npm test
 ```
 
 ## 🔧 Environment Variables / Variables de Entorno
