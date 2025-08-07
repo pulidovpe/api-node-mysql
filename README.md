@@ -104,7 +104,6 @@ APP_PORT=3000
 APP_SECRET=your-secret-key-here
 APP_HOST=localhost
 DB_HOST=localhost
-DB_CONNECTION=mysql
 DB_PORT=3306
 DB_DATABASE=api_node_mysql
 DB_USERNAME=root
