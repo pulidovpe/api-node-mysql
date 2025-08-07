@@ -1,3 +1,4 @@
+// test/test.js
 "use strict"
 
 const assert = require('assert');
@@ -5,7 +6,7 @@ const request = require('supertest');
 const app = require('../bundle/bin/www');
 const Fakerator = require("fakerator");
 
-const server = request("http://localhost:8000");
+const server = request("http://localhost:3000");
 
 const fakerator = Fakerator("es-ES");
 const fakeEmail = fakerator.internet.email();
