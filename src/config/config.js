@@ -35,4 +35,20 @@ const dev = {
 
 // Export based on environment
 const config = process.env.NODE_ENV === 'production' ? prod : dev;
+
+// Registrar configuración para depuración
+console.log('Entorno:', process.env.NODE_ENV || 'development');
+console.log('Configuración de la base de datos:', {
+   host: config.db.host,
+   port: config.db.port,
+   name: config.db.name,
+   user: config.db.user,
+   pass: config.db.pass
+});
+console.log('Configuración de la aplicación:', {
+   hostname: config.app.hostname,
+   port: config.app.port,
+   secret: config.app.secret
+});
+
 export default config;
