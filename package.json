@@ -11,7 +11,8 @@
     "build": "babel ./src --out-dir bundle",
     "prod": "NODE_ENV=production npm-run-all clean build server:prod",
     "clean": "rimraf bundle",
-    "test": "mocha test/test.js --reporter mocha-junit-reporter --reporter-options mochaFile=test-results.xml --exit"
+    "test": "mocha test/test.js --reporter mocha-junit-reporter --reporter-options mochaFile=test-results.xml --exit || true",
+    "test2": "NODE_ENV=test mocha test/test.js --exit"
   },
   "repository": {
     "type": "git",

@@ -62,3 +62,5 @@ function onListening() {
       : 'port ' + addr.port;
    debugServer('Listening on ' + bind);
 }
+
+module.exports = server;
